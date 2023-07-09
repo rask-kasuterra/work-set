@@ -1,7 +1,9 @@
-Dockerを使用する際に頻繁に使用される基本的なコマンドは以下のとおりです：
 
+# Docker コマンド
 - `docker run`：新しいコンテナを作成して実行します。
     - 例：`docker run -it ubuntu bash`
+    - -iはコンテナと対話的に操作するためのもので、コンテナの標準入力を開いたままにする。
+    - -tはtty（teletypewriter: 端末）を割り当てるためのもの。ユーザーが新しい端末セッションを作成してコンテナと対話することを可能にする。
 - `docker ps`：現在稼働しているコンテナの一覧を表示します。
 - `docker ps -a`：すべてのコンテナの一覧を表示します（稼働中、停止中含む）。
 - `docker images`：ローカルに存在するDockerイメージの一覧を表示します。
@@ -22,4 +24,9 @@ Dockerを使用する際に頻繁に使用される基本的なコマンドは�
 - `docker logs`：コンテナのログを表示します。
     - 例：`docker logs my_container`
 
-これらのコマンドはDockerを日常的に操作する際の基本となるものですが、Dockerは多機能なツールなのでこれ以外にもさまざまなコマンドがあります。そのため、特定の操作をしたい場合はDockerの公式ドキュメンテーションやヘルプ（`docker --help`）を参照することをおすすめします。
+# docker-compose コマンド
+
+- `docker-compose up -d`:docker-compose.yaml に記述しているすべての docker を起動
+  - -dオプションは"detach"の略
+  - Dockerはバックグラウンドでコンテナを実行し、コンソールを解放する
+- `docker-compose down`:docker-compose.yaml に記述しているすべての docker を停止
