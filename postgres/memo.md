@@ -17,6 +17,19 @@
 ## image の build
 ## docker build -t postgres14 .
 
+# docker-compose の取得方法
+
+```
+# 最新版のバージョン番号は Docker Compose の GitHub リリースページ（https://github.com/docker/compose/releases/）で確認してください。
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
+
+# Docker Compose をダウンロードします。
+sudo curl -L "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# ダウンロードしたバイナリに実行権限を付与します。
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
 ## docker-compose コマンドでの postgresql の起動
 docker-compose up -d
 
