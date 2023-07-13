@@ -1,0 +1,4 @@
+PJ_NAME=mysite
+APP_NAME=polls
+IMAGE_NAME=tutorial
+CONTAINER_NAME=tutorial
