@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y \
 
 # ll コマンドの alias 追加
 RUN /bin/bash -c "echo -e \"\n\
-alias ll='ls -la --color'\n\
-\" >> /root/.bashrc"
+    alias ll='ls -la --color'\n\
+    \" >> /root/.bashrc"
 
 # 作業ディレクトリを設定
 WORKDIR /app
@@ -26,11 +26,3 @@ WORKDIR /app
 # 必要なPythonパッケージをインストール
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
-
-# src ディレクトリ配下のファイルを作業ディレクトリにコピー
-#COPY ./test_chat/ .
-#COPY . /app/
-
-#EXPOSE 8000
-#
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y \
 
 # ll コマンドの alias 追加
 RUN /bin/bash -c "echo -e \"\n\
-alias ll='ls -la --color'\n\
-\" >> /root/.bashrc"
+    alias ll='ls -la --color'\n\
+    \" >> /root/.bashrc"
 
 # 作業ディレクトリを設定
 WORKDIR /app

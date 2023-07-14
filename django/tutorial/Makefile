@@ -39,8 +39,8 @@ create-admin:
 # 開発用コマンド
 #===
 
-# テーブルへの接続
-connect-model:
+# python での接続
+connect-python:
 	docker exec -it $(CONTAINER_NAME)-$(STAGE) python manage.py shell
 
 # web サーバの起動
