@@ -1,4 +1,0 @@
-PJ_NAME=test_chat
-APP_NAME=chat
-IMAGE_NAME=django
-CONTAINER_NAME=django-chat
