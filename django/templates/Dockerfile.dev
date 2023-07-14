@@ -26,11 +26,3 @@ WORKDIR /app
 # 必要なPythonパッケージをインストール
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
-
-# src ディレクトリ配下のファイルを作業ディレクトリにコピー
-#COPY ./test_chat/ .
-#COPY . /app/
-
-#EXPOSE 8000
-#
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
