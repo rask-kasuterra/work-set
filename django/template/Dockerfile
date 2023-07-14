@@ -12,12 +12,13 @@ ENV PYTHONDONTWRITEBYTECODE 1
 RUN apt-get update && apt-get install -y \
     vim \
     iproute2 \
+    less \
     && rm -rf /var/lib/apt/lists/*
 
 # ll コマンドの alias 追加
 RUN /bin/bash -c "echo -e \"\n\
-alias ll='ls -la --color'\n\
-\" >> /root/.bashrc"
+    alias ll='ls -la --color'\n\
+    \" >> /root/.bashrc"
 
 # 作業ディレクトリを設定
 WORKDIR /app
@@ -30,6 +31,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 #COPY ./test_chat/ .
 COPY . /app/
 
-#EXPOSE 8000
-#
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
