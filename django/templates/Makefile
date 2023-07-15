@@ -12,23 +12,19 @@ include .make_env
 build-dev:
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME)-dev .
 	-docker rm -f $(CONTAINER_NAME)-dev
-	docker run -p 8001:8001 -v $$PWD:/app -d --name $(CONTAINER_NAME)-dev $(IMAGE_NAME)-dev tail -f /dev/null
+	docker run -p $(DEV_PORT):$(DEV_PORT) -v $$PWD:/app -d --name $(CONTAINER_NAME)-dev $(IMAGE_NAME)-dev tail -f /dev/null
 
 create-app:
 	docker exec -it $(CONTAINER_NAME)-dev django-admin startproject $(PJ_NAME) .
 	docker exec -it $(CONTAINER_NAME)-dev python manage.py startapp $(APP_NAME)
 
-# テーブルの作成
-create-table:
-	docker exec -it $(CONTAINER_NAME)-dev python manage.py migrate
-
 # migration ファイルの作成
 create-migration:
-	docker exec -it $(CONTAINER_NAME)-dev python manage.py makemigrations polls
+	docker exec -it $(CONTAINER_NAME)-dev python manage.py makemigrations $(APP_NAME)
 
 # migration ファイルを用いてテーブルを作成
-exec-migration:
-	docker exec -it $(CONTAINER_NAME)-dev python manage.py sqlmigrate polls 0001
+migrate: create-migration
+	docker exec -it $(CONTAINER_NAME)-dev python manage.py migrate
 
 # 管理者ユーザの作成
 create-admin:
@@ -44,7 +40,7 @@ connect-python:
 
 # web サーバの起動
 run-server:
-	docker exec -it $(CONTAINER_NAME)-dev bash -c "python manage.py runserver 0.0.0.0:8001"
+	docker exec -it $(CONTAINER_NAME)-dev bash -c "python manage.py runserver 0.0.0.0:$(DEV_PORT)"
 
 start-dev:
 	docker start $(CONTAINER_NAME)-dev
