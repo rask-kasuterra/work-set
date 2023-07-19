@@ -9,11 +9,17 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
 # 必要なツール群をインストール
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     vim \
     iproute2 \
     less \
+    redis-server \
+    nodejs \
+    npm \
     && rm -rf /var/lib/apt/lists/*
+
+# JavaScript ライブラリのインストール
+RUN npm install -g firebase firebase-tools
 
 # ll コマンドの alias 追加
 RUN /bin/bash -c "echo -e \"\n\
