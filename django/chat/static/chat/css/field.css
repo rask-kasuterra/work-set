@@ -1,0 +1,9 @@
+/*#field {
+    background: url('/static/chat/img/field/field-back.png');
+}*/
+body {
+    background-image: url('/static/chat/img/field/field-back.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

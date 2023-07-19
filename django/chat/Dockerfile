@@ -14,7 +14,12 @@ RUN apt update && apt install -y \
     iproute2 \
     less \
     redis-server \
+    nodejs \
+    npm \
     && rm -rf /var/lib/apt/lists/*
+
+# JavaScript ライブラリのインストール
+RUN npm install -g firebase firebase-tools
 
 # ll コマンドの alias 追加
 RUN /bin/bash -c "echo -e \"\n\
