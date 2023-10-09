@@ -1,0 +1,4 @@
+APP_NAME=practice_react
+CONTAINER_NAME=practice_react
+IMAGE_NAME=practice_react
+DEV_PORT=3000

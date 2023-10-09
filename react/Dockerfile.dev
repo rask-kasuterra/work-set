@@ -1,0 +1,28 @@
+# nodejs のベースイメージを使用
+FROM node:lts
+
+# バッファリングの無効化
+ENV PYTHONUNBUFFERED 1
+
+# 必要なツール群をインストール
+RUN apt update && apt install -y \
+    vim \
+    iproute2 \
+    less \
+    nodejs \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# create-next-appのグローバルインストール
+RUN npm install -g create-next-app
+
+# firebase-toolsのグローバルインストール
+RUN npm install -g firebase-tools
+
+# ll コマンドの alias 追加
+RUN /bin/bash -c "echo -e \"\n\
+    alias ll='ls -la --color'\n\
+    \" >> /root/.bashrc"
